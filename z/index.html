@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>@Zox</title>
+    <style>
+
+        body::before {
+            content: "";
+            background: url('https://cdn.discordapp.com/attachments/1223793426957471744/1223804998333235200/jaydes-jaydes-vivienne.gif?ex=661b3038&is=6608bb38&hm=19161679e9e635ec1427415bee0c442645a0143f996bd857eea3a7504dbcff41&') center/cover no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0.2;
+        }
+
+        #who span {
+            display: inline-block;
+            background: url('gif/sparkle_black.gif') no-repeat;
+            background-size: cover;
+            padding: 4px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <main>
+        <img src="https://cdn.discordapp.com/avatars/1132817557661941840/e00bf8335947578c8eb56a1061d430ed.png?size=1024" alt="Profile Picture">
+        <span id="who"></span>
+        <span id="pointer">&#9758;</span>
+        <span id="footer"></span>
+        <div class="flexbox">
+            <a href="https://discord.gg/abusive"><button><i class="icon fa-brands discord"></i>/Abusive</button></a>
+            <a href="https://discord.gg/cybersec"><button><i class="icon fa-brands discord"></i>/CyberSec</button></a>
+            <a href="https://t.me/foreignslut"><button><i class="icon fa-brands telegram"></i>Tele</button></a>
+        </div>
+    </main>
+
+    <audio id="backgroundMusic">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const text = "@Zox";
+        const whoElement = document.getElementById("who");
+        const footerText = "Discord / slappingsluts";
+        const footerElement = document.getElementById("footer");
+        const pointerElement = document.getElementById("pointer");
+        let index = 0;
+        let typing = true;
+        let musicPlayed = false;
+
+        function createSpans(text, parentElement) {
+            for (let char of text) {
+                const span = document.createElement("span");
+                span.textContent = char;
+                parentElement.appendChild(span);
+            }
+        }
+
+        createSpans(text, whoElement);
+        typeWriter();
+
+        function typeWriter() {
+            if (index < footerText.length && typing) {
+                footerElement.innerHTML += footerText.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            } else if (typing) {
+                typing = false;
+                pointerElement.style.display = "inline-block";
+            }
+        }
+
+        function playAudio() {
+            if (!musicPlayed) {
+                const audio = document.getElementById("backgroundMusic");
+                audio.play();
+                musicPlayed = true;
+            }
+        }
+        
+        document.addEventListener("click", playAudio);
+    </script>
+</body>
+</html>
